@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="refno" />
+    </Key>
+    <Property Name="refno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="addrs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="nationality" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="idtype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="idnum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="checkin" Type="DateTime" Precision="3" />
+    <Property Name="checkout" Type="DateTime" Precision="3" />
+    <Property Name="roomnum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="numdays" Type="Int32" />
+    <Property Name="totalrent" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="FoodBills" Relationship="HotelDBModel.FK_Customer" FromRole="customer" ToRole="FoodBill" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="roomNum" />
+    </Key>
+    <Property Name="roomNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="roomtype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="floornum" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="roomstatus" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="HotelDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="AdminUsers" EntityType="HotelDBModel.AdminUser" />
+    <EntitySet Name="Foods" EntityType="HotelDBModel.Food" />
+    <EntitySet Name="FoodBills" EntityType="HotelDBModel.FoodBill" />
+    <AssociationSet Name="FK_Customer" Association="HotelDBModel.FK_Customer">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="FoodBill" EntitySet="FoodBills" />
+    </AssociationSet>
+    <EntitySet Name="Accounts" EntityType="HotelDBModel.Account" />
+    <EntitySet Name="Expenditures" EntityType="HotelDBModel.Expenditure" />
+  </EntityContainer>
+  <EntityType Name="AdminUser">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Aname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Aemail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fprice" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="FoodBill">
+    <Key>
+      <PropertyRef Name="bid" />
+    </Key>
+    <Property Name="bid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cRef" Type="Int32" />
+    <Property Name="RNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="dateOfBill" Type="DateTime" Precision="3" />
+    <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="customer" Relationship="HotelDBModel.FK_Customer" FromRole="FoodBill" ToRole="customer" />
+  </EntityType>
+  <Association Name="FK_Customer">
+    <End Type="HotelDBModel.customer" Role="customer" Multiplicity="0..1" />
+    <End Type="HotelDBModel.FoodBill" Role="FoodBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="refno" />
+      </Principal>
+      <Dependent Role="FoodBill">
+        <PropertyRef Name="cRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="aid" />
+    </Key>
+    <Property Name="aid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cRef" Type="Int32" />
+    <Property Name="rNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="restBill" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="roomBill" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Expenditure">
+    <Key>
+      <PropertyRef Name="eid" />
+    </Key>
+    <Property Name="eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="expType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="expAmount" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+</Schema>

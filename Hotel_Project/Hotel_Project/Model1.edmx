@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HotelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="aid" />
+          </Key>
+          <Property Name="aid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cRef" Type="int" />
+          <Property Name="rNum" Type="varchar" MaxLength="5" />
+          <Property Name="restBill" Type="money" />
+          <Property Name="roomBill" Type="money" />
+          <Property Name="total" Type="money" />
+        </EntityType>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="20" />
+          <Property Name="Aname" Type="varchar" MaxLength="20" />
+          <Property Name="Aemail" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="refno" />
+          </Key>
+          <Property Name="refno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cname" Type="varchar" MaxLength="20" />
+          <Property Name="gender" Type="varchar" MaxLength="6" />
+          <Property Name="addrs" Type="varchar" MaxLength="50" />
+          <Property Name="postcode" Type="varchar" MaxLength="10" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="20" />
+          <Property Name="nationality" Type="varchar" MaxLength="10" />
+          <Property Name="idtype" Type="varchar" MaxLength="10" />
+          <Property Name="idnum" Type="varchar" MaxLength="20" />
+          <Property Name="checkin" Type="datetime" />
+          <Property Name="checkout" Type="datetime" />
+          <Property Name="roomnum" Type="varchar" MaxLength="5" />
+          <Property Name="numdays" Type="int" />
+          <Property Name="totalrent" Type="money" />
+        </EntityType>
+        <EntityType Name="Expenditure">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="expType" Type="varchar" MaxLength="20" />
+          <Property Name="expAmount" Type="money" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="20" />
+          <Property Name="fprice" Type="money" />
+        </EntityType>
+        <EntityType Name="FoodBill">
+          <Key>
+            <PropertyRef Name="bid" />
+          </Key>
+          <Property Name="bid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cRef" Type="int" />
+          <Property Name="RNum" Type="varchar" MaxLength="5" />
+          <Property Name="dateOfBill" Type="datetime" />
+          <Property Name="amount" Type="money" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="roomNum" />
+          </Key>
+          <Property Name="roomNum" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="roomtype" Type="varchar" MaxLength="10" />
+          <Property Name="floornum" Type="int" />
+          <Property Name="price" Type="money" />
+          <Property Name="roomstatus" Type="int" />
+        </EntityType>
+        <Association Name="FK_Customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="FoodBill" Type="Self.FoodBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="refno" />
+            </Principal>
+            <Dependent Role="FoodBill">
+              <PropertyRef Name="cRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelDBModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expenditure" EntityType="Self.Expenditure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodBill" EntityType="Self.FoodBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Customer" Association="Self.FK_Customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="FoodBill" EntitySet="FoodBill" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HotelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="refno" />
+          </Key>
+          <Property Name="refno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="addrs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nationality" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idtype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idnum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="checkin" Type="DateTime" Precision="3" />
+          <Property Name="checkout" Type="DateTime" Precision="3" />
+          <Property Name="roomnum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="numdays" Type="Int32" />
+          <Property Name="totalrent" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="FoodBills" Relationship="HotelDBModel.FK_Customer" FromRole="customer" ToRole="FoodBill" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="roomNum" />
+          </Key>
+          <Property Name="roomNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="roomtype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="floornum" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="roomstatus" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="HotelDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="AdminUsers" EntityType="HotelDBModel.AdminUser" />
+          <EntitySet Name="Foods" EntityType="HotelDBModel.Food" />
+          <EntitySet Name="FoodBills" EntityType="HotelDBModel.FoodBill" />
+          <AssociationSet Name="FK_Customer" Association="HotelDBModel.FK_Customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="FoodBill" EntitySet="FoodBills" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="HotelDBModel.Account" />
+          <EntitySet Name="Expenditures" EntityType="HotelDBModel.Expenditure" />
+        </EntityContainer>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Aname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Aemail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fprice" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="FoodBill">
+          <Key>
+            <PropertyRef Name="bid" />
+          </Key>
+          <Property Name="bid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cRef" Type="Int32" />
+          <Property Name="RNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="dateOfBill" Type="DateTime" Precision="3" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="customer" Relationship="HotelDBModel.FK_Customer" FromRole="FoodBill" ToRole="customer" />
+        </EntityType>
+        <Association Name="FK_Customer">
+          <End Type="HotelDBModel.customer" Role="customer" Multiplicity="0..1" />
+          <End Type="HotelDBModel.FoodBill" Role="FoodBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="refno" />
+            </Principal>
+            <Dependent Role="FoodBill">
+              <PropertyRef Name="cRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="aid" />
+          </Key>
+          <Property Name="aid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cRef" Type="Int32" />
+          <Property Name="rNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="restBill" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="roomBill" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Expenditure">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="expType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="expAmount" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HotelDBModelStoreContainer" CdmEntityContainer="HotelDBEntities">
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="HotelDBModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="refno" ColumnName="refno" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="addrs" ColumnName="addrs" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="idtype" ColumnName="idtype" />
+                <ScalarProperty Name="idnum" ColumnName="idnum" />
+                <ScalarProperty Name="checkin" ColumnName="checkin" />
+                <ScalarProperty Name="checkout" ColumnName="checkout" />
+                <ScalarProperty Name="roomnum" ColumnName="roomnum" />
+                <ScalarProperty Name="numdays" ColumnName="numdays" />
+                <ScalarProperty Name="totalrent" ColumnName="totalrent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="HotelDBModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="roomNum" ColumnName="roomNum" />
+                <ScalarProperty Name="roomtype" ColumnName="roomtype" />
+                <ScalarProperty Name="floornum" ColumnName="floornum" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="roomstatus" ColumnName="roomstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminUsers">
+            <EntityTypeMapping TypeName="HotelDBModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="Aemail" ColumnName="Aemail" />
+                <ScalarProperty Name="Aname" ColumnName="Aname" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="HotelDBModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="fprice" ColumnName="fprice" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodBills">
+            <EntityTypeMapping TypeName="HotelDBModel.FoodBill">
+              <MappingFragment StoreEntitySet="FoodBill">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="dateOfBill" ColumnName="dateOfBill" />
+                <ScalarProperty Name="RNum" ColumnName="RNum" />
+                <ScalarProperty Name="cRef" ColumnName="cRef" />
+                <ScalarProperty Name="bid" ColumnName="bid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="HotelDBModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="roomBill" ColumnName="roomBill" />
+                <ScalarProperty Name="restBill" ColumnName="restBill" />
+                <ScalarProperty Name="rNum" ColumnName="rNum" />
+                <ScalarProperty Name="cRef" ColumnName="cRef" />
+                <ScalarProperty Name="aid" ColumnName="aid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenditures">
+            <EntityTypeMapping TypeName="HotelDBModel.Expenditure">
+              <MappingFragment StoreEntitySet="Expenditure">
+                <ScalarProperty Name="expAmount" ColumnName="expAmount" />
+                <ScalarProperty Name="expType" ColumnName="expType" />
+                <ScalarProperty Name="eid" ColumnName="eid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

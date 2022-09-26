@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HotelDBModelStoreContainer" CdmEntityContainer="HotelDBEntities">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="HotelDBModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="refno" ColumnName="refno" />
+          <ScalarProperty Name="cname" ColumnName="cname" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="addrs" ColumnName="addrs" />
+          <ScalarProperty Name="postcode" ColumnName="postcode" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="idtype" ColumnName="idtype" />
+          <ScalarProperty Name="idnum" ColumnName="idnum" />
+          <ScalarProperty Name="checkin" ColumnName="checkin" />
+          <ScalarProperty Name="checkout" ColumnName="checkout" />
+          <ScalarProperty Name="roomnum" ColumnName="roomnum" />
+          <ScalarProperty Name="numdays" ColumnName="numdays" />
+          <ScalarProperty Name="totalrent" ColumnName="totalrent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="HotelDBModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="roomNum" ColumnName="roomNum" />
+          <ScalarProperty Name="roomtype" ColumnName="roomtype" />
+          <ScalarProperty Name="floornum" ColumnName="floornum" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="roomstatus" ColumnName="roomstatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminUsers">
+      <EntityTypeMapping TypeName="HotelDBModel.AdminUser">
+        <MappingFragment StoreEntitySet="AdminUser">
+          <ScalarProperty Name="Aemail" ColumnName="Aemail" />
+          <ScalarProperty Name="Aname" ColumnName="Aname" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="HotelDBModel.Food">
+        <MappingFragment StoreEntitySet="Food">
+          <ScalarProperty Name="fprice" ColumnName="fprice" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="fid" ColumnName="fid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodBills">
+      <EntityTypeMapping TypeName="HotelDBModel.FoodBill">
+        <MappingFragment StoreEntitySet="FoodBill">
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="dateOfBill" ColumnName="dateOfBill" />
+          <ScalarProperty Name="RNum" ColumnName="RNum" />
+          <ScalarProperty Name="cRef" ColumnName="cRef" />
+          <ScalarProperty Name="bid" ColumnName="bid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="HotelDBModel.Account">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="roomBill" ColumnName="roomBill" />
+          <ScalarProperty Name="restBill" ColumnName="restBill" />
+          <ScalarProperty Name="rNum" ColumnName="rNum" />
+          <ScalarProperty Name="cRef" ColumnName="cRef" />
+          <ScalarProperty Name="aid" ColumnName="aid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expenditures">
+      <EntityTypeMapping TypeName="HotelDBModel.Expenditure">
+        <MappingFragment StoreEntitySet="Expenditure">
+          <ScalarProperty Name="expAmount" ColumnName="expAmount" />
+          <ScalarProperty Name="expType" ColumnName="expType" />
+          <ScalarProperty Name="eid" ColumnName="eid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
