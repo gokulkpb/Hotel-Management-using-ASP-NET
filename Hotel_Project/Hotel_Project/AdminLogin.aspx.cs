@@ -25,24 +25,23 @@ namespace Hotel_Project
             {
                 string user = txtUsername.Text;
                 string pass = txtPassword.Text;
-                
-                var result = from a in db.AdminUsers
-                             where a.username == user && a.pass == pass
-                             select a;
-                if(result != null)
+                AdminUser result = null;
+                result = db.AdminUsers.Find(user);
+
+                if(result.pass == pass)
                 {
                     Session["user"] = user;
                     Response.Redirect("AddRoom.aspx");
                 }
                 else
                 {
-                    AdminLoginLabel.Text = "User Does not exist";
+                    AdminLoginLabel.Text = "Incorrect Password";
                 }
                             
             }
             catch(Exception ex)
             {
-                AdminLoginLabel.Text = ex.Message;
+                AdminLoginLabel.Text = "User Does not Exist";
             }
         }
 

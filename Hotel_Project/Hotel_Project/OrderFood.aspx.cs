@@ -64,7 +64,8 @@ namespace Hotel_Project
                 foodBill.dateOfBill = DateTime.Now;
 
                 var result = from a in db.customers
-                             where a.roomnum == foodBill.RNum
+                             where a.roomnum == foodBill.RNum &&
+                             a.checkout == null
                              select a.refno;
 
                 foodBill.cRef = int.Parse(result.First().ToString());
