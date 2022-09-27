@@ -85,6 +85,7 @@
     <Content Include="Content\RestStyles.css" />
     <Content Include="Content\styles.css" />
     <Content Include="Landing.html" />
+    <Content Include="ManageFood.aspx" />
     <Content Include="ManageRooms.aspx" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="FoodBill.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ManageFood.aspx.cs">
+      <DependentUpon>ManageFood.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageFood.aspx.designer.cs">
+      <DependentUpon>ManageFood.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageRooms.aspx.cs">
       <DependentUpon>ManageRooms.aspx</DependentUpon>

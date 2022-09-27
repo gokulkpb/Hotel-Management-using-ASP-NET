@@ -40,8 +40,8 @@
             <li><a href="OrderFood.aspx"><i class="fas fa-home"></i>Take Order</a></li>
             <li><a href="AddFood.aspx"><i class="fas fa-user"></i>Add Food</a></li>
             <li><a href="ViewFoods.aspx"><i class="fas fa-address-card"></i>History</a></--li>
-            <!--li><a href="#"><i class="fas fa-project-diagram"></i>portfolio</a></li>
-            <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+            <li><a href="ManageFood.aspx"><i class="fas fa-project-diagram"></i>Manage Food</a></li>
+            <!--li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
             <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
             <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li-->
         </ul> 
