@@ -26,7 +26,6 @@
     <AlternatingItemTemplate>
         <tr style="background-color:#FFF8DC;">
             <td>
-                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
                 <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
             </td>
             <td>
@@ -102,7 +101,6 @@
     <ItemTemplate>
         <tr style="background-color:#DCDCDC;color: #000000;">
             <td>
-                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
                 <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
             </td>
             <td>
@@ -154,7 +152,6 @@
     <SelectedItemTemplate>
         <tr style="background-color:#008A8C;font-weight: bold;color: #FFFFFF;">
             <td>
-                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
                 <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
             </td>
             <td>

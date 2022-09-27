@@ -49,14 +49,15 @@ namespace Hotel_Project
                 lblRoomRent.Text = $"Rent : Rs {rent} for 24 hrs";
                 lblRoomTotal.Text = $" Total : {Math.Round(total, 2)}";
 
-                lblRest.Text = $"{Math.Round(c.totalrent.Value, 2)}";
+                decimal totalrestBill = 0;
+                totalrestBill = db.FoodBills.Where(t => t.cRef == c.refno).Sum(t => t.amount).Value;
+                lblRest.Text = $"{Math.Round(totalrestBill, 2)}";
 
 
-
-
+                
 
                 billAmount = 0;
-                billAmount = c.totalrent.Value + total;
+                billAmount = totalrestBill + total;
                 lblTotal.Text = $"Total Bill Amount is Rs {Math.Round(billAmount, 2)}";
                   
 
@@ -81,8 +82,8 @@ namespace Hotel_Project
                 Account acc = new Account();
                 acc.cRef = c.refno;
                 acc.rNum = c.roomnum;
-                acc.restBill = c.totalrent;
-                acc.roomBill = billAmount - c.totalrent;
+                acc.restBill = db.FoodBills.Where(t => t.cRef == c.refno).Sum(t => t.amount).Value;
+                acc.roomBill = billAmount - acc.restBill;
                 acc.total = billAmount;
                 _c.checkout = DateTime.Now;
                 _c.totalrent = billAmount;

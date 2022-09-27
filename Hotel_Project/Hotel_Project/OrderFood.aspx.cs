@@ -72,8 +72,6 @@ namespace Hotel_Project
 
                 db.FoodBills.Add(foodBill);
 
-                customer c = db.customers.Find(foodBill.cRef);
-                c.totalrent += sum;
                 db.SaveChanges();
                 Label1.Text = "Successfully Updated";
                 sum = 0;
