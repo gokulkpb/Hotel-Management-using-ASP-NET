@@ -53,12 +53,7 @@ namespace Hotel_Project
             {
                 Label1.Text = ex.Message;
             }
-            finally
-            {
-                Session["message"] = "Succesfully Added";
-                Response.Redirect("Checkin.aspx");
-
-            }
+            
 
 
         }

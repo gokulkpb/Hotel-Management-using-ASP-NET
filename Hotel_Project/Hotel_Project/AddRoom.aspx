@@ -166,7 +166,7 @@
         </td>
     </tr>
     <tr>
-        <td class="auto-style24">Room Count</td>
+        <td class="auto-style24">Room Status</td>
         <td class="auto-style25">:</td>
         <td class="auto-style31">
             <asp:TextBox ID="txtCount" runat="server" Height="46px" Width="234px"></asp:TextBox>

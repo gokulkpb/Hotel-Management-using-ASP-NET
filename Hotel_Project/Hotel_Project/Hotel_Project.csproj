@@ -98,6 +98,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="OrderFood.aspx" />
+    <Content Include="SearchCustomer.aspx" />
     <Content Include="ViewCustomers.aspx" />
     <Content Include="ViewCustomersAdmin.aspx" />
     <Content Include="ViewFoods.aspx" />
@@ -218,6 +219,13 @@
     </Compile>
     <Compile Include="Room.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchCustomer.aspx.cs">
+      <DependentUpon>SearchCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchCustomer.aspx.designer.cs">
+      <DependentUpon>SearchCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

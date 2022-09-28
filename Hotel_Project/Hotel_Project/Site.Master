@@ -43,8 +43,8 @@
             <li><a href="ViewCustomers.aspx"><i class="fas fa-user"></i>View All Customers</a></li>
             <li><a href="ViewRooms.aspx"><i class="fas fa-address-card"></i>View Rooms</a></--li>
             <li><a href="Checkout.aspx"><i class="fas fa-project-diagram"></i>Check Out</a></!--li>
-            <!--li><a href="#"><i class="fas fa-blog"></i>Blogs</a></!--li>
-            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
+            <li><a href="SearchCustomer.aspx"><i class="fas fa-blog"></i>Search Customer</a></!--li>
+            <!--li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
             <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li-->
         </ul> 
         <div class="social_media">
